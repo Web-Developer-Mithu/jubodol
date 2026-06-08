@@ -966,6 +966,45 @@
       }
     }
 
+    @media (max-width: 480px) {
+      #announce-bar {
+        padding: 7px 0;
+        font-size: 11px;
+      }
+
+      #news-ticker {
+        padding: 8px 0;
+      }
+
+      .ticker-label {
+        font-size: 9px;
+        padding: 4px 9px;
+        margin-right: 10px;
+        letter-spacing: .06em;
+      }
+
+      .ticker-item {
+        font-size: 11.5px;
+        gap: 8px;
+      }
+
+      .ticker-items {
+        gap: 28px;
+        animation-duration: 28s;
+      }
+
+      .ticker-dot {
+        width: 3px;
+        height: 3px;
+      }
+
+      .ticker-track {
+        flex: 1;
+        min-width: 0;
+        width: 100%;
+      }
+    }
+
     /* ─── QUICK ACTIONS ──────────────────────────────────── */
     #quick-actions {
       padding: 60px 0;
@@ -2006,15 +2045,66 @@
     /* ─── NEWS ───────────────────────────────────────────── */
     #news {
       padding: 100px 0;
+      border: 2px solid transparent;
+      border-radius: calc(var(--radius-lg) + 12px);
+      background-image: linear-gradient(180deg, #ffffff, #ffffff), linear-gradient(90deg, var(--red), var(--green));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+    }
+
+    .news-actions {
+      display: flex;
+      justify-content: center;
+      margin: 18px 0 12px;
+    }
+
+    .news-toggle-btn {
+      max-width: 280px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .news-actions-outer {
+      display: flex;
+      justify-content: center;
+      margin: 28px auto 0;
+      padding: 0 24px;
+    }
+
+    .news-actions-outer .news-toggle-btn {
+      max-width: 280px;
+      width: 100%;
+      justify-content: center;
+      color: var(--green);
+    }
+
+    .news-actions-outer .news-toggle-btn:hover {
+      background: var(--green);
+      color: #fff !important;
     }
 
     .news-header {
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 48px;
       flex-wrap: wrap;
       gap: 20px;
+      padding: 22px 24px;
+      background: rgba(255, 255, 255, .98);
+      border: 1px solid rgba(0, 106, 78, .12);
+      border-radius: calc(var(--radius-lg) + 8px);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, .06);
+    }
+
+    .news-header>div:first-child {
+      text-align: center;
+      width: 100%;
+      max-width: 760px;
+    }
+
+    .news-header>div:last-child {
+      justify-content: center;
     }
 
     .news-featured {
@@ -2022,6 +2112,9 @@
       grid-template-columns: 1.4fr 1fr;
       gap: 24px;
       margin-bottom: 24px;
+      padding: 22px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .08);
+      background: transparent;
     }
 
     .news-card-featured {
@@ -2031,7 +2124,7 @@
       text-decoration: none;
       color: #fff;
       position: relative;
-      min-height: 280px;
+      min-height: 320px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -2100,73 +2193,43 @@
     }
 
     .news-side {
+      position: relative;
       display: flex;
       flex-direction: column;
       gap: 16px;
+      overflow: hidden;
+      max-height: 760px;
+      border: none;
+      border-radius: calc(var(--radius-lg) + 4px);
+      padding: 18px;
+      background: transparent;
     }
 
     .news-card-small {
-      background: rgba(255, 255, 255, .92);
-      border: 1px solid rgba(160, 0, 20, .12);
-      border-radius: var(--radius-lg);
-      padding: 18px;
+      /* gradient border around each item */
+      background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, var(--red), var(--green));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      border: 2px solid transparent;
+      border-radius: 16px;
+      padding: 14px;
       text-decoration: none;
       color: var(--text-dark);
       transition: var(--transition);
       display: flex;
       gap: 14px;
       align-items: flex-start;
-      box-shadow: 0 18px 36px rgba(0, 0, 0, .08);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .06);
+      will-change: transform;
     }
 
     .news-side-list {
       display: flex;
       flex-direction: column;
       gap: 14px;
+      animation: newsTicker 20s linear infinite;
     }
 
-    .news-notice-ticker {
-      margin-top: 24px;
-      padding: 18px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, .96);
-      border: 1px solid rgba(0, 106, 78, .12);
-      box-shadow: inset 0 0 0 1px rgba(220, 20, 60, .04);
-    }
-
-    .notice-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--green);
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      margin-bottom: 12px;
-    }
-
-    .notice-track {
-      overflow: hidden;
-      max-height: 328px;
-      position: relative;
-    }
-
-    .notice-items {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      animation: noticeScroll 24s linear infinite;
-    }
-
-    .notice-item {
-      min-height: 56px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: rgba(0, 106, 78, .08);
-      color: var(--text-mid);
-      font-size: 13px;
-      line-height: 1.6;
-      border: 1px solid rgba(0, 106, 78, .1);
-    }
 
     .news-card-small:hover {
       box-shadow: 0 20px 50px rgba(220, 20, 60, .18);
@@ -2175,87 +2238,147 @@
     }
 
     .news-card-small-img {
-      width: 70px;
-      height: 70px;
+      width: 64px;
+      height: 64px;
       border-radius: 18px;
       flex-shrink: 0;
       background: var(--green-pale);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      font-size: 26px;
     }
 
-    .news-preview-panel {
-      margin-top: 24px;
-      padding: 24px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(235, 253, 243, .96));
-      border: 1px solid rgba(0, 106, 78, .16);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, .08);
-    }
-
-    .news-preview-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
-    .news-preview-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: #0c3d27;
-      margin-bottom: 10px;
-    }
-
-    .news-preview-meta,
-    .news-preview-file {
+    .news-card-small-preview {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity .2s ease, max-height .2s ease;
+      color: var(--green-dark);
       font-size: 13px;
-      color: var(--text-mid);
-      margin-bottom: 12px;
-    }
-
-    .news-preview-text {
-      font-size: 14px;
-      color: #164321;
-      line-height: 1.7;
-      min-height: 72px;
-      margin-bottom: 16px;
-    }
-
-    .news-preview-link,
-    .news-toggle-btn {
-      width: 100%;
-      display: inline-flex;
-      justify-content: center;
-      padding: 11px 18px;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
       gap: 8px;
-      text-align: center;
+    }
+
+    .news-card-small:hover .news-card-small-preview {
+      opacity: 1;
+      max-height: 40px;
+    }
+
+    .news-card-small {
+      position: relative;
+      overflow: visible;
+    }
+
+    .news-card-small::before {
+      content: '';
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      width: 84px;
+      height: 84px;
+      background: url('logo1.png') center/contain no-repeat;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+
+    .news-card-small>.news-card-small-img,
+    .news-card-small>div {
+      position: relative;
+      z-index: 2;
+    }
+
+    .news-date {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--green-dark);
+      background: transparent;
+      text-decoration: underline;
+      text-decoration-color: var(--red);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+      margin-right: 8px;
+    }
+
+    .news-card-small-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .news-card-small-meta {
+      font-size: 12px;
+      color: var(--text-light);
     }
 
     .news-toggle-btn {
       margin-top: 20px;
+      width: 100%;
     }
 
-    .news-preview-link {
-      max-width: 100%;
+    .news-actions {
+      position: sticky;
+      bottom: 12px;
+      display: flex;
+      justify-content: center;
+      z-index: 40;
+      margin-top: 18px;
+      padding-top: 6px;
     }
 
-    @keyframes noticeScroll {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-50%); }
+    .news-actions .news-toggle-btn {
+      max-width: 320px;
+      width: 100%;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, .06);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    }
+
+    .news-fixed-btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 70;
+      padding: 11px 18px;
+      background: linear-gradient(90deg, var(--red), var(--green));
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+      text-align: center;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .news-fixed-btn:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .2);
+    }
+
+    @keyframes newsTicker {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-50%);
+      }
     }
 
     .news-all-panel {
       display: none;
       margin-top: 32px;
-      padding: 24px;
-      border: 1px solid rgba(0, 100, 70, .14);
+      padding: 22px;
       border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, .9);
+      background: rgba(255, 255, 255, 0.96);
       box-shadow: 0 24px 60px rgba(0, 0, 0, .07);
       backdrop-filter: blur(12px);
     }
@@ -2278,22 +2401,6 @@
       font-size: 13px;
     }
 
-    @keyframes floatNews {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    .news-card-small-title {
-      font-size: 14.5px;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 6px;
-    }
-
-    .news-card-small-meta {
-      font-size: 12px;
-      color: var(--text-light);
-    }
 
     .news-grid {
       display: grid;
@@ -3365,6 +3472,76 @@
       .worldwide-regions {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .news-header {
+        padding: 16px 14px;
+      }
+
+      .news-featured {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 18px;
+        padding: 16px;
+      }
+
+      .news-card-body {
+        padding: 16px;
+      }
+
+      .news-card-title {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .news-card-meta {
+        font-size: 11px;
+        gap: 10px;
+      }
+
+      .news-side {
+        padding: 12px;
+        gap: 12px;
+      }
+
+      .news-card-small {
+        padding: 10px;
+        gap: 10px;
+        border-radius: 12px;
+        box-shadow: 0 10px 18px rgba(0, 0, 0, .05);
+      }
+
+      .news-card-small-img {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        font-size: 20px;
+      }
+
+      .news-card-small-title {
+        font-size: 13px;
+        line-height: 1.35;
+        margin-bottom: 4px;
+      }
+
+      .news-card-small-meta {
+        font-size: 11px;
+      }
+
+      .news-card-small-preview {
+        font-size: 12px;
+        gap: 6px;
+      }
+
+      .news-card-small::before {
+        width: 56px;
+        height: 56px;
+        right: 8px;
+        opacity: 0.05;
+      }
+
+      .news-side-list {
+        gap: 10px;
+      }
     }
 
     /* ─── UTILITY CLASSES ────────────────────────────────── */
@@ -3392,10 +3569,57 @@
 
 <body>
 
-  
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-emblem">
+            <div class="nav-logo-emblem-sheaf"></div>
+          </div>
+          <div class="nav-logo-text">
+            <span class="nav-logo-abbr">BNP</span>
+            <span class="nav-logo-full">Bangladesh Nationalist Party</span>
+          </div>
+        </a>
 
-  <!-- NAVBAR -->
- 
+        <ul class="nav-links">
+          <li><a href="#" class="active">Home</a></li>
+          <li>
+            <button>Leadership <span class="nav-chevron">▾</span></button>
+            <div class="nav-dropdown">
+              <a href="#leadership"><span class="dd-icon">👤</span> Chairman</a>
+              <a href="#leadership"><span class="dd-icon">🏛</span> Standing Committee</a>
+              <a href="#leadership"><span class="dd-icon">🤝</span> Advisory Council</a>
+              <a href="#leadership"><span class="dd-icon">📋</span> Executive Committee</a>
+            </div>
+          </li>
+          <li>
+            <button>Policies <span class="nav-chevron">▾</span></button>
+            <div class="nav-dropdown">
+              <a href="#policies"><span class="dd-icon">📜</span> Vision 2030</a>
+              <a href="#policies"><span class="dd-icon">📌</span> 31-Point Reform</a>
+              <a href="#policies"><span class="dd-icon">📝</span> 19-Point Agenda</a>
+              <a href="#policies"><span class="dd-icon">⚖️</span> Constitution</a>
+            </div>
+          </li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#election">Election 2026</a></li>
+          <li><a href="#membership">Membership</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="nav-lang" id="langToggle" onclick="toggleLang()"><span id="langLabel">বাং</span></button>
+          <a href="#donate-banner" class="btn btn-red" style="padding:9px 20px;font-size:14px">Donate</a>
+          <a href="#membership" class="btn btn-primary" style="padding:9px 20px;font-size:14px">Join BNP</a>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
 
   <!-- MOBILE NAV -->
   <div id="mobile-nav">
@@ -5142,7 +5366,8 @@
           <div class="news-card-overlay"></div>
           <div class="news-card-body">
             <div class="news-card-category">🔴 ব্রেকিং নিউজ</div>
-            <div class="news-card-title">ঐতিহাসিক সমাবেশে জাতীয় নবায়নের জন্য ব্যাপক ৩১ দফা সনদ উন্মোচন করল বিএনপি</div>
+            <div class="news-card-title">ঐতিহাসিক সমাবেশে জাতীয় নবায়নের জন্য ব্যাপক ৩১ দফা সনদ উন্মোচন করল বিএনপি
+            </div>
             <div class="news-card-meta">
               <span>📅 ৫ জুন, ২০২৬</span>
               <span>✍️ বিএনপি যোগাযোগ</span>
@@ -5153,84 +5378,98 @@
 
         <div class="news-side">
           <div class="news-side-list">
-            <a href="news-detail-1.html" target="_blank" class="news-card-small" data-preview-title="অধিকারপ্রাপ্ত ও ন্যায়সঙ্গত নির্বাচন দাবিতে চেয়ারম্যান তারিক রহমানের বার্তা" data-preview-tag="প্রেস রিলিজ" data-preview-meta="৩ জুন, ২০২৬ · প্রেস রিলিজ" data-preview-file="report-1.pdf" data-preview-text="চেয়ারম্যান তারিক রহমান আগামী নির্বাচনে স্বচ্ছতা ও ন্যায়বিচারের জন্য দলের রোডম্যাপ তুলে ধরবেন। প্রিভিউতে নোটিশের মূল পয়েন্ট দেখুন।">
+            <a href="news-detail-1.html" target="_blank" class="news-card-small" data-preview-file="report-1.pdf">
               <div class="news-card-small-img">🇧🇩</div>
               <div>
-                <div class="news-card-small-title">অধিকারপ্রাপ্ত ও ন্যায়সঙ্গত নির্বাচন দাবিতে চেয়ারম্যান তারিক রহমানের বার্তা</div>
-                <div class="news-card-small-meta">৩ জুন, ২০২৬ · প্রেস রিলিজ</div>
+                <div class="news-card-small-title">অধিকারপ্রাপ্ত ও ন্যায়সঙ্গত নির্বাচন দাবিতে চেয়ারম্যান তারিক রহমানের
+                  বার্তা</div>
+                <div class="news-card-small-meta"><span class="news-date">৩ জুন, ২০২৬</span> · প্রেস রিলিজ</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
               </div>
             </a>
-            <a href="news-detail-2.html" target="_blank" class="news-card-small" data-preview-title="স্বতন্ত্র নির্বাচন কমিশন প্রতিষ্ঠার জন্য বিএনপি হাইকোর্টে রিট দায়ের করেছে" data-preview-tag="আইনি" data-preview-meta="১ জুন, ২০২৬ · আইনি" data-preview-file="petition-2.pdf" data-preview-text="বিএনপি দলের পক্ষ থেকে স্বাধীন নির্বাচন কমিশনের দাবিতে উচ্চ আদালতে রিট দায়ের করা হয়েছে। এখানে বিস্তারিত নোটিশ দেখুন।">
+            <a href="news-detail-2.html" target="_blank" class="news-card-small" data-preview-file="petition-2.pdf">
               <div class="news-card-small-img">⚖️</div>
               <div>
-                <div class="news-card-small-title">স্বতন্ত্র নির্বাচন কমিশন প্রতিষ্ঠার জন্য বিএনপি হাইকোর্টে রিট দায়ের করেছে</div>
-                <div class="news-card-small-meta">১ জুন, ২০২৬ · আইনি</div>
+                <div class="news-card-small-title">স্বতন্ত্র নির্বাচন কমিশন প্রতিষ্ঠার জন্য বিএনপি হাইকোর্টে রিট দায়ের
+                  করেছে</div>
+                <div class="news-card-small-meta"><span class="news-date">১ জুন, ২০২৬</span> · আইনি</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
               </div>
             </a>
-            <a href="news-detail-3.html" target="_blank" class="news-card-small" data-preview-title="বিএনপির গণতান্ত্রিক সংস্কার কর্মসূচি আন্তর্জাতিক পর্যবেক্ষকদের নজরে" data-preview-tag="আন্তর্জাতিক" data-preview-meta="৩০ মে, ২০২৬ · আন্তর্জাতিক" data-preview-file="briefing-3.pdf" data-preview-text="আন্তর্জাতিক পর্যবেক্ষকরা বিএনপির গণতান্ত্রিক সংস্কারের ধারা ও কর্মসূচি মনিটর করছেন। প্রিভিউ থেকে নোটিশটির সারসংক্ষেপ দেখুন।">
+            <a href="news-detail-3.html" target="_blank" class="news-card-small" data-preview-file="briefing-3.pdf">
               <div class="news-card-small-img">🌍</div>
               <div>
-                <div class="news-card-small-title">বিএনপির গণতান্ত্রিক সংস্কার কর্মসূচি আন্তর্জাতিক পর্যবেক্ষকদের নজরে</div>
-                <div class="news-card-small-meta">৩০ মে, ২০২৬ · আন্তর্জাতিক</div>
+                <div class="news-card-small-title">বিএনপির গণতান্ত্রিক সংস্কার কর্মসূচি আন্তর্জাতিক পর্যবেক্ষকদের নজরে
+                </div>
+                <div class="news-card-small-meta"><span class="news-date">৩০ মে, ২০২৬</span> · আন্তর্জাতিক</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
               </div>
             </a>
-            <a href="news-detail-4.html" target="_blank" class="news-card-small" data-preview-title="ভিশন ২০৩০ অর্থনৈতিক পরিকল্পনা: বিশেষজ্ঞ প্যানেলের বিশ্লেষণ" data-preview-tag="নীতি" data-preview-meta="২৮ মে, ২০২৬ · নীতি" data-preview-file="vision-4.pdf" data-preview-text="ভিশন ২০৩০-এর মূল দিকগুলো নিয়ে বিশেষজ্ঞ প্যানেলের বিশ্লেষণ ও সুপারিশগুলো এই নোটিশে রয়েছে।">
+            <a href="news-detail-4.html" target="_blank" class="news-card-small" data-preview-file="vision-4.pdf">
+              <div class="news-card-small-img">📊</div>
+              <div>
+                <div class="news-card-small-title">ভিশন ২০৩০ অর্থনৈতিক পরিকল্পনা: বিশেষজ্ঞ প্যানেলের বিশ্লেষণ</div>
+                <div class="news-card-small-meta"><span class="news-date">২৮ মে, ২০২৬</span> · নীতি</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
+              </div>
+            </a>
+            <a href="news-detail-5.html" target="_blank" class="news-card-small" data-preview-file="campaign-5.pdf">
+              <div class="news-card-small-img">👥</div>
+              <div>
+                <div class="news-card-small-title">৬৪ জেলায় যুব আন্দোলন: ভোটার সচেতনতা ও নিবন্ধন বৃদ্ধি</div>
+                <div class="news-card-small-meta"><span class="news-date">২৬ মে, ২০২৬</span> · যুব</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
+              </div>
+            </a>
+            <a href="news-detail-1.html" target="_blank" class="news-card-small" aria-hidden="true" tabindex="-1"
+              data-preview-file="report-1.pdf">
+              <div class="news-card-small-img">🇧🇩</div>
+              <div>
+                <div class="news-card-small-title">অধিকারপ্রাপ্ত ও ন্যায়সঙ্গত নির্বাচন দাবিতে চেয়ারম্যান তারিক রহমানের
+                  বার্তা</div>
+                <div class="news-card-small-meta">৩ জুন, ২০২৬ · প্রেস রিলিজ</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
+              </div>
+            </a>
+            <a href="news-detail-2.html" target="_blank" class="news-card-small" aria-hidden="true" tabindex="-1"
+              data-preview-file="petition-2.pdf">
+              <div class="news-card-small-img">⚖️</div>
+              <div>
+                <div class="news-card-small-title">স্বতন্ত্র নির্বাচন কমিশন প্রতিষ্ঠার জন্য বিএনপি হাইকোর্টে রিট দায়ের
+                  করেছে</div>
+                <div class="news-card-small-meta">১ জুন, ২০২৬ · আইনি</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
+              </div>
+            </a>
+            <a href="news-detail-3.html" target="_blank" class="news-card-small" aria-hidden="true" tabindex="-1"
+              data-preview-file="briefing-3.pdf">
+              <div class="news-card-small-img">🌍</div>
+              <div>
+                <div class="news-card-small-title">বিএনপির গণতান্ত্রিক সংস্কার কর্মসূচি আন্তর্জাতিক পর্যবেক্ষকদের নজরে
+                </div>
+                <div class="news-card-small-meta">৩০ মে, ২০২৬ · আন্তর্জাতিক</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
+              </div>
+            </a>
+            <a href="news-detail-4.html" target="_blank" class="news-card-small" aria-hidden="true" tabindex="-1"
+              data-preview-file="vision-4.pdf">
               <div class="news-card-small-img">📊</div>
               <div>
                 <div class="news-card-small-title">ভিশন ২০৩০ অর্থনৈতিক পরিকল্পনা: বিশেষজ্ঞ প্যানেলের বিশ্লেষণ</div>
                 <div class="news-card-small-meta">২৮ মে, ২০২৬ · নীতি</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
               </div>
             </a>
-            <a href="news-detail-5.html" target="_blank" class="news-card-small" data-preview-title="৬৪ জেলায় যুব আন্দোলন: ভোটার সচেতনতা ও নিবন্ধন বৃদ্ধি" data-preview-tag="যুব" data-preview-meta="২৬ মে, ২০২৬ · যুব" data-preview-file="campaign-5.pdf" data-preview-text="বিএনপি যুব শাখা ৬৪ জেলার মধ্যে ভোটার সচেতনতা ও নিবন্ধন বাড়াতে নতুন কর্মসূচি চালু করেছে। বিস্তারিত প্রিভিউ দেখুন।">
+            <a href="news-detail-5.html" target="_blank" class="news-card-small" aria-hidden="true" tabindex="-1"
+              data-preview-file="campaign-5.pdf">
               <div class="news-card-small-img">👥</div>
               <div>
                 <div class="news-card-small-title">৬৪ জেলায় যুব আন্দোলন: ভোটার সচেতনতা ও নিবন্ধন বৃদ্ধি</div>
                 <div class="news-card-small-meta">২৬ মে, ২০২৬ · যুব</div>
+                <div class="news-card-small-preview">📄 ফাইল প্রিভিউ দেখুন</div>
               </div>
             </a>
           </div>
-
-          <div class="news-notice-ticker">
-            <div class="notice-label">ডেমো নোটিশ</div>
-            <div class="notice-track">
-              <div class="notice-items">
-                <div class="notice-item">নোটিশ ১: কেন্দ্রীয় অফিসে জরুরি সভা ১০ জুন, ২০২৬।</div>
-                <div class="notice-item">নোটিশ ২: সদস্য নিবন্ধন কার্যক্রম ১২ জুন পর্যন্ত চলবে।</div>
-                <div class="notice-item">নোটিশ ৩: নতুন প্রচার প্ল্যান সন্ধান সভা ১৪ জুন বিকেলে।</div>
-                <div class="notice-item">নোটিশ ৪: যুব কর্মী টেনিং ১৫ জুন শুরু হবে।</div>
-                <div class="notice-item">নোটিশ ৫: ইলেকশন ওয়াররুম প্রস্তুতি রিপোর্ট প্রকাশ।</div>
-                <div class="notice-item">নোটিশ ৬: বাইরের সমর্থন দলীয় মুখপাত্রদের সঙ্গে আলাপ।</div>
-                <div class="notice-item">নোটিশ ৭: আন্তর্জাতিক প্রতিনিধি দল ১৬ জুন ঢাকায় আগমন করবে।</div>
-                <div class="notice-item">নোটিশ ৮: উন্নয়ন নীতি বিষয়ক ওয়ার্কশপ ১৮ জুন অনুষ্ঠিত হবে।</div>
-                <div class="notice-item">নোটিশ ৯: সংগঠন শাখা সম্মেলন ২০ জুন ঢাকা সেন্টারে।</div>
-                <div class="notice-item">নোটিশ ১০: মিডিয়া ব্রিফিং ২২ জুন সকালে অনলাইনে।</div>
-                <div class="notice-item">নোটিশ ১: কেন্দ্রীয় অফিসে জরুরি সভা ১০ জুন, ২০২৬।</div>
-                <div class="notice-item">নোটিশ ২: সদস্য নিবন্ধন কার্যক্রম ১২ জুন পর্যন্ত চলবে।</div>
-                <div class="notice-item">নোটিশ ৩: নতুন প্রচার প্ল্যান সন্ধান সভা ১৪ জুন বিকেলে।</div>
-                <div class="notice-item">নোটিশ ৪: যুব কর্মী টেনিং ১৫ জুন শুরু হবে।</div>
-                <div class="notice-item">নোটিশ ৫: ইলেকশন ওয়াররুম প্রস্তুতি রিপোর্ট প্রকাশ।</div>
-                <div class="notice-item">নোটিশ ৬: বাইরের সমর্থন দলীয় মুখপাত্রদের সঙ্গে আলাপ।</div>
-                <div class="notice-item">নোটিশ ৭: আন্তর্জাতিক প্রতিনিধি দল ১৬ জুন ঢাকায় আগমন করবে।</div>
-                <div class="notice-item">নোটিশ ৮: উন্নয়ন নীতি বিষয়ক ওয়ার্কশপ ১৮ জুন অনুষ্ঠিত হবে।</div>
-                <div class="notice-item">নোটিশ ৯: সংগঠন শাখা সম্মেলন ২০ জুন ঢাকা সেন্টারে।</div>
-                <div class="notice-item">নোটিশ ১০: মিডিয়া ব্রিফিং ২২ জুন সকালে অনলাইনে।</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="news-preview-panel" id="newsPreview">
-            <div class="news-preview-header">
-              <span class="section-label">প্রিভিউ</span>
-              <span class="tag tag-red">ফাইল প্রিভিউ</span>
-            </div>
-            <div class="news-preview-title">অধিকারপ্রাপ্ত ও ন্যায়সঙ্গত নির্বাচন দাবিতে চেয়ারম্যান তারিক রহমানের বার্তা</div>
-            <div class="news-preview-meta">৩ জুন, ২০২৬ · প্রেস রিলিজ</div>
-            <div class="news-preview-file">ফাইল: report-1.pdf</div>
-            <p class="news-preview-text">চেয়ারম্যান তারিক রহমান আগামী নির্বাচনে স্বচ্ছতা ও ন্যায়বিচারের জন্য দলের রোডম্যাপ তুলে ধরবেন। প্রিভিউতে নোটিশের মূল পয়েন্ট দেখুন।</p>
-            <a href="news-detail-1.html" target="_blank" class="btn btn-primary news-preview-link">পুরো নোটিশ দেখুন</a>
-          </div>
-
-          <a href="javascript:void(0)" id="newsToggleBtn" class="btn btn-outline news-toggle-btn">সম্পূর্ণ তালিকা দেখুন</a>
         </div>
       </div>
 
@@ -5247,7 +5486,8 @@
             </div>
             <div class="news-card-regular-body">
               <div class="tag tag-green mb-12">নীতি</div>
-              <div class="news-card-regular-title">সংবিধান সংশোধন প্রস্তাব: কীভাবে বিএনপি সংসদকে শক্তিশালী করতে চায়</div>
+              <div class="news-card-regular-title">সংবিধান সংশোধন প্রস্তাব: কীভাবে বিএনপি সংসদকে শক্তিশালী করতে চায়
+              </div>
               <div style="font-size:13px;color:var(--text-mid);margin-top:8px">২৬ মে, ২০২৬ · ৪ মিনিট পড়া</div>
             </div>
           </a>
@@ -5258,7 +5498,8 @@
             </div>
             <div class="news-card-regular-body">
               <div class="tag tag-gold mb-12">যুব</div>
-              <div class="news-card-regular-title">বিএনপি যুব বাহিনী ৬৪ জেলায় ভোটার নিবন্ধন কর্মসূচি ত্বরান্বিত করছে</div>
+              <div class="news-card-regular-title">বিএনপি যুব বাহিনী ৬৪ জেলায় ভোটার নিবন্ধন কর্মসূচি ত্বরান্বিত করছে
+              </div>
               <div style="font-size:13px;color:var(--text-mid);margin-top:8px">২৪ মে, ২০২৬ · ৩ মিনিট পড়া</div>
             </div>
           </a>
@@ -5280,7 +5521,8 @@
             </div>
             <div class="news-card-regular-body">
               <div class="tag tag-green mb-12">প্রচার</div>
-              <div class="news-card-regular-title">স্থানীয় প্রার্থী ঘোষণায় গণতান্ত্রিক নির্ভরযোগ্যতার প্রতিশ্রুতি</div>
+              <div class="news-card-regular-title">স্থানীয় প্রার্থী ঘোষণায় গণতান্ত্রিক নির্ভরযোগ্যতার প্রতিশ্রুতি
+              </div>
               <div style="font-size:13px;color:var(--text-mid);margin-top:8px">২০ মে, ২০২৬ · ৩ মিনিট পড়া</div>
             </div>
           </a>
@@ -5299,6 +5541,11 @@
       </div>
     </div>
   </section>
+
+  <!-- News toggle button outside section, centered -->
+  <div class="news-actions-outer">
+    <a href="javascript:void(0)" id="newsToggleBtn" class="btn btn-outline news-toggle-btn">সম্পূর্ণ তালিকা দেখুন</a>
+  </div>
 
   <!-- ELECTION CENTER -->
   <section id="election">
@@ -5610,90 +5857,84 @@
 
           <div style="margin-top:40px;display:flex;flex-direction:column;gap:20px">
             <div style="display:flex;align-items:flex-start;gap:16px">
-              <div
-                style="width:48px;height:48px;border-radius:14px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
-                💡</div>
-              <div>
-                <div style="font-size:16px;font-weight:600;margin-bottom:4px">Policy Suggestions</div>
-                <div style="font-size:14px;color:var(--text-mid)">Share ideas for economic, social or political reform
-                  that BNP should include in its agenda.</div>
-              </div>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:16px">
-              <div
-                style="width:48px;height:48px;border-radius:14px;background:#fde8e8;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
-                🚨</div>
-              <div>
-                <div style="font-size:16px;font-weight:600;margin-bottom:4px">Grievances & Complaints</div>
-                <div style="font-size:14px;color:var(--text-mid)">Report violations of democratic rights, suppression or
-                  electoral irregularities in your area.</div>
-              </div>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:16px">
-              <div
-                style="width:48px;height:48px;border-radius:14px;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
-                🏗</div>
-              <div>
-                <div style="font-size:16px;font-weight:600;margin-bottom:4px">Nation-Building Ideas</div>
-                <div style="font-size:14px;color:var(--text-mid)">Propose development projects, community initiatives or
-                  public service innovations for Bangladesh.</div>
-              </div>
             </div>
           </div>
         </div>
-
-        <div class="feedback-form-wrap">
-          <div style="font-size:20px;font-weight:700;margin-bottom:24px">📨 Submit Your Feedback</div>
-          <div class="form-group">
-            <div class="form-grid">
-              <div>
-                <label class="form-label">Full Name</label>
-                <input class="form-input" type="text" placeholder="আপনার নাম">
-              </div>
-              <div>
-                <label class="form-label">Phone / Email</label>
-                <input class="form-input" type="text" placeholder="+880 or email">
-              </div>
-            </div>
+        <div style="display:flex;align-items:flex-start;gap:16px">
+          <div
+            style="width:48px;height:48px;border-radius:14px;background:#fde8e8;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+            🚨</div>
+          <div>
+            <div style="font-size:16px;font-weight:600;margin-bottom:4px">Grievances & Complaints</div>
+            <div style="font-size:14px;color:var(--text-mid)">Report violations of democratic rights, suppression or
+              electoral irregularities in your area.</div>
           </div>
-          <div class="form-group">
-            <label class="form-label">District</label>
-            <select class="form-select">
-              <option>Select your district</option>
-              <option>Dhaka</option>
-              <option>Chittagong</option>
-              <option>Sylhet</option>
-              <option>Rajshahi</option>
-              <option>Khulna</option>
-              <option>Barisal</option>
-              <option>Rangpur</option>
-              <option>Mymensingh</option>
-              <option>Abroad / Overseas</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Category</label>
-            <select class="form-select">
-              <option>Select type of feedback</option>
-              <option>💡 Policy Suggestion</option>
-              <option>🚨 Grievance / Complaint</option>
-              <option>🏗 Nation-Building Idea</option>
-              <option>✉️ General Message</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Your Message</label>
-            <textarea class="form-textarea" placeholder="আপনার মতামত, পরামর্শ বা অভিযোগ লিখুন..."></textarea>
-          </div>
-          <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="handleFeedbackSubmit()">
-            📨 Submit Feedback
-          </button>
-          <div id="feedback-success"
-            style="display:none;margin-top:16px;background:var(--green-pale);color:var(--green);border-radius:10px;padding:14px;text-align:center;font-weight:600">
-            ✅ Thank you! Your feedback has been submitted and assigned ticket #BNP-<span id="ticket-num"></span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:16px">
+          <div
+            style="width:48px;height:48px;border-radius:14px;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">
+            🏗</div>
+          <div>
+            <div style="font-size:16px;font-weight:600;margin-bottom:4px">Nation-Building Ideas</div>
+            <div style="font-size:14px;color:var(--text-mid)">Propose development projects, community initiatives or
+              public service innovations for Bangladesh.</div>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="feedback-form-wrap">
+      <div style="font-size:20px;font-weight:700;margin-bottom:24px">📨 Submit Your Feedback</div>
+      <div class="form-group">
+        <div class="form-grid">
+          <div>
+            <label class="form-label">Full Name</label>
+            <input class="form-input" type="text" placeholder="আপনার নাম">
+          </div>
+          <div>
+            <label class="form-label">Phone / Email</label>
+            <input class="form-input" type="text" placeholder="+880 or email">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">District</label>
+        <select class="form-select">
+          <option>Select your district</option>
+          <option>Dhaka</option>
+          <option>Chittagong</option>
+          <option>Sylhet</option>
+          <option>Rajshahi</option>
+          <option>Khulna</option>
+          <option>Barisal</option>
+          <option>Rangpur</option>
+          <option>Mymensingh</option>
+          <option>Abroad / Overseas</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <select class="form-select">
+          <option>Select type of feedback</option>
+          <option>💡 Policy Suggestion</option>
+          <option>🚨 Grievance / Complaint</option>
+          <option>🏗 Nation-Building Idea</option>
+          <option>✉️ General Message</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Message</label>
+        <textarea class="form-textarea" placeholder="আপনার মতামত, পরামর্শ বা অভিযোগ লিখুন..."></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="handleFeedbackSubmit()">
+        📨 Submit Feedback
+      </button>
+      <div id="feedback-success"
+        style="display:none;margin-top:16px;background:var(--green-pale);color:var(--green);border-radius:10px;padding:14px;text-align:center;font-weight:600">
+        ✅ Thank you! Your feedback has been submitted and assigned ticket #BNP-<span id="ticket-num"></span>
+      </div>
+    </div>
+    </div>
     </div>
   </section>
 
@@ -6198,31 +6439,6 @@
       }
       const newsBtn = document.getElementById('newsToggleBtn');
       const newsPanel = document.getElementById('newsAllPanel');
-      const newsPreview = document.getElementById('newsPreview');
-      const previewTitle = newsPreview?.querySelector('.news-preview-title');
-      const previewMeta = newsPreview?.querySelector('.news-preview-meta');
-      const previewFile = newsPreview?.querySelector('.news-preview-file');
-      const previewText = newsPreview?.querySelector('.news-preview-text');
-      const previewLink = newsPreview?.querySelector('.news-preview-link');
-      const previewTag = newsPreview?.querySelector('.news-preview-header .tag');
-
-      function updateNewsPreview(card) {
-        if (!card || !previewTitle || !previewMeta || !previewText || !previewLink || !previewFile || !previewTag) return;
-        previewTitle.textContent = card.dataset.previewTitle || previewTitle.textContent;
-        previewMeta.textContent = card.dataset.previewMeta || previewMeta.textContent;
-        previewFile.textContent = 'ফাইল: ' + (card.dataset.previewFile || 'নো ফাইল');
-        previewText.textContent = card.dataset.previewText || previewText.textContent;
-        previewLink.href = card.href || previewLink.href;
-        previewTag.textContent = card.dataset.previewTag ? card.dataset.previewTag : previewTag.textContent;
-      }
-
-      document.querySelectorAll('.news-card-small').forEach(card => {
-        card.addEventListener('mouseenter', () => updateNewsPreview(card));
-        card.addEventListener('focus', () => updateNewsPreview(card));
-      });
-      const firstSmall = document.querySelector('.news-card-small');
-      if (firstSmall) updateNewsPreview(firstSmall);
-
       if (newsBtn && newsPanel) {
         newsBtn.addEventListener('click', () => {
           const isOpen = newsPanel.classList.toggle('active');
